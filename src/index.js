@@ -19,13 +19,14 @@ class App extends React.Component {
 
   //**We have to always define render but not the constructor**
   render() {
-    return (
-      <div>
-        Latitude:{this.state.lat}
-        <br />
-        Error: {this.state.errMessage}
-      </div>
-    );
+    if (this.state.errMessage && !this.state.lat) {
+      return <div>Error: {this.state.errMessage}</div>;
+    }
+    if (!this.state.errMessage && this.state.lat) {
+      return <div>Latitude: {this.state.lat}</div>;
+    }
+
+    return <div>Loading!</div>;
   }
 }
 
